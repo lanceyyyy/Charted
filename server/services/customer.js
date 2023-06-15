@@ -72,5 +72,32 @@ exports.delete = (req, res, next) => {
     .catch((err) => next(err));
 };
 
-exports.add_to_wishlist = (req, res, next) => {};
-exports.remove_to_wishlist = (req, res, next) => {};
+exports.wishlist_customer = (req, res, next) => {
+  Customer.findById(req.params.id)
+    .then((result) => res.json(result.wishlist))
+    .catch((err) => next(err));
+};
+
+exports.add_to_wishlist = (req, res, next) => {
+  Customer.findByIdAndUpdate(
+    req.body.customer,
+    {
+      $push: { wishlist: req.body.product },
+    },
+    { new: true }
+  )
+    .then((result) => res.json(result))
+    .catch((err) => next(err));
+};
+
+exports.remove_to_wishlist = (req, res, next) => {
+  Customer.findByIdAndUpdate(
+    req.body.customer,
+    {
+      $pull: { wishlist: req.body.product },
+    },
+    { new: true }
+  )
+    .then((result) => res.json(result))
+    .catch((err) => next(err));
+};
