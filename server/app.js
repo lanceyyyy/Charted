@@ -18,6 +18,22 @@ mongoose.plugin(castAggregation);
 mongoose.set("toJSON", { virtuals: true });
 mongoose.set("strictQuery", false);
 
+// const mongodb_uri =
+//   "mongodb+srv://admin:1234@school-cluster.g7im8ww.mongodb.net/zarathelle?retryWrites=true&w=majority";
+
+const mongodbUrl = process.env.MONGO_URL;
+mongoose
+  .connect(process.env.MONGODB_URI || mongodbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: "charted",
+  })
+  .then(() => console.log("Connected Successfully"))
+  .catch((err) => {
+    console.error(err);
+  });
+let db = mongoose.connection;
+
 // MIDDLEWARES
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
@@ -27,11 +43,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(compression());
-app.use(express.static(path.join(__dirname, "public")));
 
 // ROUTES
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+
+// Static Path
+app.use(express.static(path.join(__dirname, "public")));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -43,10 +61,12 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
+  console.log(err.message);
+
   // render the error page
   res.status(err.status || 500);
   res.json({
-    message: err.message,
+    error: err.message,
   });
 });
 
