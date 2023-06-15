@@ -19,8 +19,7 @@ exports.create = (req, res, next) => {
     name,
     description,
     image: req.file.filename,
-    category,
-    collection_id,
+    availability,
     stocks,
     price,
   });
