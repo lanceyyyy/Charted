@@ -71,3 +71,6 @@ exports.delete = (req, res, next) => {
     .then((result) => res.json(result))
     .catch((err) => next(err));
 };
+
+exports.add_to_wishlist = (req, res, next) => {};
+exports.remove_to_wishlist = (req, res, next) => {};
