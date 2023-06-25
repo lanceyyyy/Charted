@@ -10,6 +10,18 @@ const ProductSchema = new Schema(
       type: mongoose.Types.Decimal128,
       get: getValue,
     },
+    type: {
+      type: String,
+      enum: ["customizable", "fixed"],
+      required: true,
+    },
+
+    size: String,
+    shape: String,
+    patrol_color: String,
+    patrol_light: String,
+    tassel_size: String,
+
     availability: Boolean,
     stocks: Number,
   },

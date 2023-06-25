@@ -5,7 +5,6 @@ const OrderItemSchema = new Schema(
   {
     product: {
       type: mongoose.Types.ObjectId,
-      required: true,
       ref: "product",
     },
     quantity: {
@@ -18,6 +17,16 @@ const OrderItemSchema = new Schema(
       get: getValue,
       required: true,
     },
+    type: {
+      type: String,
+      required: true,
+      enum: ["customizable", "fixed"],
+    },
+    patrol_color: String,
+    size: String,
+    shape: String,
+    tassel_size: String,
+    patrol_light: String,
   },
   {
     timestamps: true,

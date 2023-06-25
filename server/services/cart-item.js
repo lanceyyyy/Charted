@@ -22,7 +22,16 @@ exports.list_user = (req, res, next) => {
 };
 
 exports.create = (req, res, next) => {
-  const cart_item = ({ customer, product } = req.body);
+  const cart_item = ({
+    customer,
+    product,
+    type,
+    patrol_color,
+    size,
+    shape,
+    tassel_size,
+    patrol_light,
+  } = req.body);
 
   if (req.body.quantity) {
     cart_item.quantity = req.body.quantity;
