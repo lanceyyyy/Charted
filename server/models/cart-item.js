@@ -9,10 +9,26 @@ const CartItemSchema = new Schema({
   },
   product: {
     type: mongoose.Types.ObjectId,
-    required: true,
     ref: "product",
+  },
+  type: String,
+  patrol_color: String,
+  size: String,
+  shape: String,
+  tassel_size: String,
+  patrol_light: String,
+  price: {
+    type: mongoose.Types.Decimal128,
+    get: getValue,
   },
   quantity: Number,
 });
+
+function getValue(value) {
+  if (typeof value !== "undefined") {
+    return parseFloat(value.toString());
+  }
+  return value;
+}
 
 module.exports = mongoose.model("cart-item", CartItemSchema);
