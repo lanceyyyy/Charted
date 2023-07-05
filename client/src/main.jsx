@@ -14,7 +14,11 @@ import App from "./App.jsx";
 import Root from "./routes/Root.jsx";
 import Error from "./routes/Error.jsx";
 import Home from "./routes/client/Home.jsx";
+
+// Admin
 import Dashboard from "./routes/admin/Dashboard.jsx";
+import CustomersList from "./routes/admin/customers/CustomerList.jsx";
+import ProductsList from "./routes/admin/products/ProductsList.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -70,7 +74,7 @@ const router = createBrowserRouter([
 								children: [
 									{
 										path: "list",
-										element: <h1>Customer List</h1>,
+										element: <CustomersList />,
 									},
 									{
 										path: ":id",
@@ -84,7 +88,7 @@ const router = createBrowserRouter([
 								children: [
 									{
 										path: "list",
-										element: <h1>Products List</h1>,
+										element: <ProductsList />,
 									},
 									{
 										path: ":id",
