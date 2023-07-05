@@ -5,14 +5,7 @@ import {
 } from "../../../app/utils";
 import { Link } from "react-router-dom";
 
-import {
-	Box,
-	Button,
-	CardMedia,
-	Chip,
-	Paper,
-	Typography,
-} from "@mui/material";
+import { Box, CardMedia, Paper } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 
 // Custom Components
