@@ -19,6 +19,7 @@ import Home from "./routes/client/Home.jsx";
 import Dashboard from "./routes/admin/Dashboard.jsx";
 import CustomersList from "./routes/admin/customers/CustomerList.jsx";
 import ProductsList from "./routes/admin/products/ProductsList.jsx";
+import OrdersList from "./routes/admin/orders/OrdersList.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -109,7 +110,7 @@ const router = createBrowserRouter([
 								children: [
 									{
 										index: true,
-										element: <h1>Orders List</h1>,
+										element: <OrdersList />,
 									},
 									{
 										path: ":id",
