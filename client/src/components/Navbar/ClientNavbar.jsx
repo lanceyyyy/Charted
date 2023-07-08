@@ -66,6 +66,7 @@ const MenuSelect = () => {
               color: "primary.red",
             },
           }}
+
         >
           Products
         </MenuItem>
