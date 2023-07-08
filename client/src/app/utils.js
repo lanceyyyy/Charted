@@ -36,7 +36,7 @@ export const generateProductData = (num) => ({
 
 export const generateOrderData = (num) => ({
 	id: num,
-	user: {
+	customer: {
 		id: `user-${num}`,
 		username: `username-${num}`,
 		img_url: "/images/sample/customer.jpg",
@@ -47,7 +47,7 @@ export const generateOrderData = (num) => ({
 			product: { id: `product-${num}`, name: `product-name-${num}` },
 		},
 	],
-	status: num % 2 ? "on its way" : "delivered",
+	status: num % 2 ? "On Its Way" : "Delivered",
 	total_price: num % 2 ? 1234.23 : 4423.32,
 	total_quantity: num % 2 ? 3 : 13,
 });
