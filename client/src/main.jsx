@@ -20,6 +20,11 @@ import Dashboard from "./routes/admin/Dashboard.jsx";
 import CustomersList from "./routes/admin/customers/CustomerList.jsx";
 import ProductsList from "./routes/admin/products/ProductsList.jsx";
 import OrdersList from "./routes/admin/orders/OrdersList.jsx";
+import CustomersDetail from "./routes/admin/customers/CustomerDetail.jsx";
+import ProductCreate from "./routes/admin/products/ProductCreate.jsx";
+import ProductsDetail from "./routes/admin/products/ProductDetail.jsx";
+import ProductUpdate from "./routes/admin/products/ProductUpdate.jsx";
+import OrdersDetail from "./routes/admin/orders/OrdersDetail.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -79,7 +84,7 @@ const router = createBrowserRouter([
 									},
 									{
 										path: ":id",
-										element: <h1>Customer Detail</h1>,
+										element: <CustomersDetail />,
 									},
 								],
 							},
@@ -93,15 +98,15 @@ const router = createBrowserRouter([
 									},
 									{
 										path: ":id",
-										element: <h1>Product Detail</h1>,
+										element: <ProductsDetail />,
 									},
 									{
 										path: ":id/update",
-										element: <h1>Product Update</h1>,
+										element: <ProductUpdate />,
 									},
 									{
 										path: "create",
-										element: <h1>Product Create</h1>,
+										element: <ProductCreate />,
 									},
 								],
 							},
@@ -114,7 +119,7 @@ const router = createBrowserRouter([
 									},
 									{
 										path: ":id",
-										element: <h1>Order</h1>,
+										element: <OrdersDetail />,
 									},
 								],
 							},
