@@ -55,19 +55,49 @@ const MenuSelect = () => {
       >
         <MenuItem
           onClick={handleClose}
-          sx={{ backgroundColor: "primary.red", color: "primary.text" }}
+          sx={{
+            backgroundColor: "primary.red",
+            color: "primary.text",
+            fontSize: {
+              xs: "13px",
+              md: "18px",
+            },
+            "&:hover": {
+              color: "primary.red",
+            },
+          }}
         >
           Products
         </MenuItem>
         <MenuItem
           onClick={handleClose}
-          sx={{ backgroundColor: "primary.red", color: "primary.text" }}
+          sx={{
+            backgroundColor: "primary.red",
+            color: "primary.text",
+            fontSize: {
+              xs: "13px",
+              md: "18px",
+            },
+            "&:hover": {
+              color: "primary.red",
+            },
+          }}
         >
           Customize
         </MenuItem>
         <MenuItem
           onClick={handleClose}
-          sx={{ backgroundColor: "primary.red", color: "primary.text" }}
+          sx={{
+            backgroundColor: "primary.red",
+            color: "primary.text",
+            fontSize: {
+              xs: "13px",
+              md: "18px",
+            },
+            "&:hover": {
+              color: "primary.red",
+            },
+          }}
         >
           Contact Us
         </MenuItem>
@@ -81,7 +111,8 @@ function ClientNavbar({ children }) {
     <Box>
       <AppBar
         position="sticky"
-        sx={{ backgroundColor: "#FFFFFF", paddingY: 1 }}
+
+        sx={{ backgroundColor: "#FFFFFF", paddingY: 0.5 }}
       >
         <Toolbar>
           <MenuSelect />
