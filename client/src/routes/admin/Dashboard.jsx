@@ -7,46 +7,59 @@ import FlareIcon from "@mui/icons-material/Flare";
 import AdminTitle from "../../components/AdminTitle";
 
 const DataSummary = ({ title, num, Icon }) => {
-	return (
-		<Grid xs={12} md={6} lg={3}>
-			<Paper
-				elevation={3}
-				sx={{ p: 3, display: "flex", justifyContent: "space-between" }}
-			>
-				<Box>
-					<Icon
-						sx={{
-							fontSize: 50,
-							color: (theme) => theme.palette.primary.main,
-						}}
-					/>
-				</Box>
-				<Box textAlign="end">
-					<Typography variant="h5">{num}</Typography>
-					<Typography variant="body1">{title}</Typography>
-				</Box>
-			</Paper>
-		</Grid>
-	);
+  return (
+    <Grid xs={12} md={6} lg={3}>
+      <Paper
+        elevation={3}
+        sx={{
+          p: 3,
+          display: "flex",
+          justifyContent: "space-around",
+          borderRadius: "10px",
+          background: "linear-gradient(145deg, #e6e6e6, #ffffff)",
+          boxShadow: "8px 8px 16px #c9c9c9, -8px -8px 16px #ffffff",
+        }}
+      >
+        <Box sx={{}}>
+          <Icon
+            sx={{
+              fontSize: 50,
+              color: (theme) => theme.palette.primary.main,
+            }}
+          />
+        </Box>
+        <Box textAlign="end ">
+          <Typography variant="h5">{num}</Typography>
+          <Typography sx={{ color: "primary.red" }} variant="body1">
+            {title}
+          </Typography>
+        </Box>
+      </Paper>
+    </Grid>
+  );
 };
 
 function Dashboard() {
-	return (
-		<Box>
-			<AdminTitle title="Dashboard " />
-			<Box>
-				<Grid container spacing={3}>
-					<DataSummary title="Customers" num={3} Icon={GroupIcon} />
-					<DataSummary title="Total Products" num={3} Icon={FlareIcon} />
-					<DataSummary
-						title="Pending Orders"
-						num={3}
-						Icon={LocalShippingIcon}
-					/>
-				</Grid>
-			</Box>
-		</Box>
-	);
+  return (
+    <Box
+      sx={{
+        padding: 4,
+      }}
+    >
+      <AdminTitle title="Dashboard " />
+      <Box>
+        <Grid container spacing={3}>
+          <DataSummary title="Customers" num={3} Icon={GroupIcon} />
+          <DataSummary title="Total Products" num={3} Icon={FlareIcon} />
+          <DataSummary
+            title="Pending Orders"
+            num={3}
+            Icon={LocalShippingIcon}
+          />
+        </Grid>
+      </Box>
+    </Box>
+  );
 }
 
 export default Dashboard;
