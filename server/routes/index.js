@@ -41,6 +41,10 @@ router.post("/customer/sign-up", customer_services.signup);
 router.patch("/customer/:id/update", customer_services.update);
 router.delete("/customer/:id/delete", customer_services.delete);
 router.post("/customer/login", customer_services.login);
+
+router.get("/customer/:id/cart-items", cart_item_services.list_user);
+router.get("/customer/:id/orders", order_services.list_customer);
+
 router.get("/customer/:id", customer_services.detail);
 router.get("/customers", customer_services.list);
 
@@ -67,9 +71,9 @@ router.get("/cart-item/:id", cart_item_services.detail);
 router.get("/cart-items", cart_item_services.list);
 
 // Order Routes
-router.post("/order/create", order_services.create);
+router.post("/order/create", order_services.checkout);
 router.patch("/order/:id/status-change", order_services.status_change);
-router.delete("/order/:id/delete", order_services.delete);
+// router.delete("/order/:id/delete", order_services.delete);
 router.get("/order/:id", order_services.detail);
 router.get("/orders", order_services.list);
 

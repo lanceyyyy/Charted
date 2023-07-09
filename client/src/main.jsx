@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "@emotion/react";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { SnackbarProvider } from "notistack";
 
 import "./styles.css";
 
@@ -144,13 +145,15 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <CssBaseline />
-        {/* <App /> */}
-        <RouterProvider router={router} />
-      </Provider>
-    </ThemeProvider>
-  </React.StrictMode>
+
+	<React.StrictMode>
+		<ThemeProvider theme={theme}>
+			<Provider store={store}>
+				<CssBaseline />
+				<SnackbarProvider />
+				<RouterProvider router={router} />
+			</Provider>
+		</ThemeProvider>
+	</React.StrictMode>
+
 );
