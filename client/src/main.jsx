@@ -26,6 +26,8 @@ import ProductsDetail from "./routes/admin/products/ProductDetail.jsx";
 import ProductUpdate from "./routes/admin/products/ProductUpdate.jsx";
 import OrdersDetail from "./routes/admin/orders/OrdersDetail.jsx";
 import Login from "./routes/client/Login.jsx";
+import Customize from "./routes/client/Customize";
+import ContactUs from "./routes/client/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -40,9 +42,10 @@ const router = createBrowserRouter([
             element: <Home />,
           },
           {
-            path: "/login",
-            element: <Login />,
+            path: "/contact",
+            element: <ContactUs />,
           },
+
           {
             path: "/products",
             element: <h1>Products List</h1>,
@@ -52,12 +55,16 @@ const router = createBrowserRouter([
             element: <h1>Products showcase</h1>,
           },
           {
-            path: "/login",
-            element: <h1>Products showcase</h1>,
+            path: "/customize",
+            element: <Customize />,
           },
           {
             path: "/sign-up",
             element: <h1>Products showcase</h1>,
+          },
+          {
+            path: "/login",
+            element: <Login />,
           },
           {
             path: "/customers",

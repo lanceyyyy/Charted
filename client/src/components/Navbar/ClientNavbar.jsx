@@ -66,7 +66,6 @@ const MenuSelect = () => {
               color: "primary.red",
             },
           }}
-
         >
           Products
         </MenuItem>
@@ -87,7 +86,8 @@ const MenuSelect = () => {
           Customize
         </MenuItem>
         <MenuItem
-          onClick={handleClose}
+          LinkComponent={Link}
+          to={`/contact`}
           sx={{
             backgroundColor: "primary.red",
             color: "primary.text",
