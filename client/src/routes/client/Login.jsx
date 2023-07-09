@@ -1,4 +1,13 @@
-import { Box } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
+import { useFormik } from "formik";
 
 export default function Login() {
   return (
@@ -12,15 +21,15 @@ export default function Login() {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: {
-          xs: "column-reverse",
+          xs: "column",
           lg: "row",
         },
       }}
     >
       <Box
         sx={{
-          border: "1px solid",
           width: "20%",
+          marginRight: "2%",
         }}
       >
         <Box
@@ -29,12 +38,53 @@ export default function Login() {
           src="/hero-colored.png"
         ></Box>
       </Box>
-      <Box
-        sx={{
-          border: "1px solid",
-        }}
-      >
-        Login Page
+      <Box sx={{}} component="form">
+        <Grid container>
+          <Grid>
+            <Paper
+              elevation={4}
+              sx={{
+                padding: 3,
+              }}
+            >
+              <Typography variant="h5" textAlign="center">
+                Login to CharTed Parol
+              </Typography>
+              <Divider />
+              <Box sx={{ px: 2, pt: 2 }}>
+                <TextField
+                  label="Username"
+                  required
+                  name="username"
+                  fullWidth
+                  sx={{
+                    paddingBottom: "10px",
+                  }}
+                />
+                <TextField
+                  label="Password"
+                  required
+                  name="password"
+                  fullWidth
+                  sx={{
+                    paddingBottom: "10px",
+                  }}
+                />
+                <Button
+                  sx={{
+                    backgroundColor: "primary.red",
+                    color: "primary.text",
+                  }}
+                >
+                  Login
+                </Button>
+                <Typography textAlign="right" color="primary.red">
+                  Sign Up
+                </Typography>
+              </Box>
+            </Paper>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
