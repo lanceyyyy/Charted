@@ -1,3 +1,4 @@
+
 import logo_colored from "../../assets/hero-colored.png";
 import background from "../../assets/hero-background-blurred.jpg";
 import logo_shadow from "../../assets/hero-shadow.png";
@@ -9,6 +10,7 @@ import { Button, Typography } from "@mui/material";
 import ContactUs from "../client/ContactUs";
 import Customize from "../client/Customize";
 import Login from "../client/Login";
+
 
 export default function Home() {
   return (
@@ -63,7 +65,8 @@ export default function Home() {
                   lg: 900,
                 },
               }}
-              src={logo_colored}
+
+              src="/hero-colored.png"
               alt="Hero Logo Colored"
             />
           </Box>
@@ -88,7 +91,7 @@ export default function Home() {
                   lg: 1200,
                 },
               }}
-              src={logo_shadow}
+              src="/hero-shadow.png"
               alt="Hero Logo Shadow"
             />
           </Box>
@@ -169,7 +172,7 @@ export default function Home() {
       </Box>
       <Box
         sx={{
-          backgroundImage: `url(${backgroundsvg1})`,
+          backgroundImage: `url(/backgroundhome1.svg)`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -269,6 +272,7 @@ export default function Home() {
               lg: "60%",
             },
           }}
+
         >
           {/* <Carousel /> */}
         </Box>
@@ -276,6 +280,8 @@ export default function Home() {
       {/* <ContactUs /> */}
       {/* <Customize /> */}
       <Login />
+        </Box>
+      </Box>
     </Box>
   );
 }
