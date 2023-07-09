@@ -4,6 +4,8 @@ import { ThemeProvider } from "@emotion/react";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import "./styles.css";
+
 import theme from "./app/theme.js";
 import store from "./app/store.js";
 
@@ -23,6 +25,7 @@ import ProductCreate from "./routes/admin/products/ProductCreate.jsx";
 import ProductsDetail from "./routes/admin/products/ProductDetail.jsx";
 import ProductUpdate from "./routes/admin/products/ProductUpdate.jsx";
 import OrdersDetail from "./routes/admin/orders/OrdersDetail.jsx";
+import Login from "./routes/client/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Home />,
+          },
+          {
+            path: "/login",
+            element: <Login />,
           },
           {
             path: "/products",

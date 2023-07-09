@@ -7,6 +7,8 @@ import backgroundsvg2 from "/backgroundhome2.svg";
 import Box from "@mui/material/Box";
 import { Button, Typography } from "@mui/material";
 import ContactUs from "../client/ContactUs";
+import Customize from "../client/Customize";
+import Login from "../client/Login";
 
 export default function Home() {
   return (
@@ -189,6 +191,7 @@ export default function Home() {
       >
         <Box
           sx={{
+            alignSelf: { lg: "center" },
             textAlign: {
               xs: "center",
               lg: "left",
@@ -270,7 +273,9 @@ export default function Home() {
           {/* <Carousel /> */}
         </Box>
       </Box>
-      <ContactUs />
+      {/* <ContactUs /> */}
+      {/* <Customize /> */}
+      <Login />
     </Box>
   );
 }
