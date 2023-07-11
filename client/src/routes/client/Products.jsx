@@ -12,7 +12,7 @@ import { PHPPrice, api_base_url } from "../../app/utils";
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../app/services/product";
 
-const CardProduct = ({ name, price, id, image_url, availability }) => {
+const CardProduct = ({ name, price, id, image_url }) => {
   return (
     <Grid xs={12} sm={6} md={3}>
       <Box>
@@ -25,7 +25,7 @@ const CardProduct = ({ name, price, id, image_url, availability }) => {
         >
           <CardActionArea LinkComponent={Link} to={`/products/${id}`}>
             <CardMedia
-              image={`${api_base_url}${image_url}`}
+              image={`images/sample-product.png`}
               sx={{
                 height: { xs: 300, sm: 250, md: 225 },
                 width: { xs: 300, sm: 250, md: 225 },
