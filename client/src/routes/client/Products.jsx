@@ -25,7 +25,7 @@ const CardProduct = ({ name, price, id, image_url }) => {
         >
           <CardActionArea LinkComponent={Link} to={`/products/${id}`}>
             <CardMedia
-              image={`images/sample-product.png`}
+              image={`${api_base_url}${image_url}`}
               sx={{
                 height: { xs: 300, sm: 250, md: 225 },
                 width: { xs: 300, sm: 250, md: 225 },

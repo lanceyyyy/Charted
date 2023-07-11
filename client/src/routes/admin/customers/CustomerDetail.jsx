@@ -41,21 +41,6 @@ const Info = ({ title, value }) => (
 function CustomersDetail() {
   const { id } = useParams();
   const { data: customer = {}, isLoading, isSuccess } = useGetCustomerQuery(id);
-
-  // const isLoading = false;
-  // const isSuccess = true;
-  // const customer = {
-  //   first_name: "sample",
-  //   last_name: "last_name",
-  //   barangay: "barangay",
-  //   municipality: "municipality",
-  //   city: "city",
-  //   postal: "postal",
-  //   phone_number: "phone_number",
-  //   email: "sample@email.com",
-  //   password: "1234",
-  // };
-
   let content;
   if (isLoading) {
     content = (

@@ -18,6 +18,7 @@ import Home from "./routes/client/Home.jsx";
 
 // Admin
 import Dashboard from "./routes/admin/Dashboard.jsx";
+import LoginAdmin from "./routes/admin/Login.jsx";
 import CustomersList from "./routes/admin/customers/CustomerList.jsx";
 import ProductsList from "./routes/admin/products/ProductsList.jsx";
 import OrdersList from "./routes/admin/orders/OrdersList.jsx";
@@ -96,6 +97,10 @@ const router = createBrowserRouter([
               {
                 index: true,
                 element: <Dashboard />,
+              },
+              {
+                path: "login",
+                element: <LoginAdmin />,
               },
               {
                 path: "customers",
