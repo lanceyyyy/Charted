@@ -56,13 +56,6 @@ export const productApi = api.injectEndpoints({
 			}),
 			invalidatesTags: ["Product"],
 		}),
-		viewProduct: build.mutation({
-			query: (data) => ({
-				url: `/view-product`,
-				method: "POST",
-				body: data,
-			}),
-		}),
 	}),
 });
 

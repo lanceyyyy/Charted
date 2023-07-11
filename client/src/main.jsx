@@ -29,6 +29,11 @@ import OrdersDetail from "./routes/admin/orders/OrdersDetail.jsx";
 import Login from "./routes/client/Login.jsx";
 import Customize from "./routes/client/Customize";
 import ContactUs from "./routes/client/ContactUs";
+import Signup from "./routes/client/Signup";
+import Products from "./routes/client/Products";
+import Product from "./routes/client/Product";
+import CartItems from "./routes/client/CartItems";
+import OrderHistory from "./routes/client/OrderHistory";
 
 const router = createBrowserRouter([
 	{
@@ -46,14 +51,13 @@ const router = createBrowserRouter([
 						path: "/contact",
 						element: <ContactUs />,
 					},
-
 					{
 						path: "/products",
-						element: <h1>Products List</h1>,
+						element: <Products />,
 					},
 					{
 						path: "/products/:id",
-						element: <h1>Products showcase</h1>,
+						element: <Product />,
 					},
 					{
 						path: "/customize",
@@ -61,7 +65,7 @@ const router = createBrowserRouter([
 					},
 					{
 						path: "/sign-up",
-						element: <h1>Products showcase</h1>,
+						element: <Signup />,
 					},
 					{
 						path: "/login",
@@ -77,7 +81,11 @@ const router = createBrowserRouter([
 							// /customers/cart-items
 							{
 								path: "cart-items",
-								element: <h1>Customer's Cart Items</h1>,
+								element: <CartItems />,
+							},
+							{
+								path: "order-history",
+								element: <OrderHistory />,
 							},
 						],
 					},

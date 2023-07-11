@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
 import { DateTime } from "luxon";
-
-// import {
-//   useChangeStatusOrderMutation,
-//   useGetOrderQuery,
-// } from "../../../features/apiSlice";
 
 import {
 	Box,
@@ -29,6 +23,10 @@ import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import { PHPPrice, api_base_url } from "../../../app/utils";
 
 import LoadingProgress from "../../../components/LoadingProgress";
+import {
+	useChangeStatusOrderMutation,
+	useGetOrderQuery,
+} from "../../../app/services/order";
 
 const Title = ({ title }) => (
 	<Box>
@@ -64,8 +62,8 @@ const ImageColumn = ({ row }) => {
 };
 
 const CategoryInfo = ({ row }) => {
-	if (row.product.category === "ready made") {
-		return <Chip label="Ready Made" color="primary" />;
+	if (row.type === "regular") {
+		return <Chip label="Regular" color="primary" />;
 	} else {
 		return <Chip label="Customizable" color="secondary" />;
 	}
@@ -86,8 +84,8 @@ const CustomPhotoColumn = ({ row }) => {
 
 const columns = [
 	{
-		field: "type",
-		headerName: "Type",
+		field: "name",
+		headerName: "Product",
 		width: 200,
 		valueFormatter: (product) => product.value.name,
 	},
@@ -105,7 +103,7 @@ const columns = [
 			`${qty.value} ${qty.value > 1 ? "items" : "item"}`,
 	},
 	{
-		field: "category",
+		field: "type",
 		headerName: "Category",
 		width: 125,
 		headerAlign: "center",
@@ -118,17 +116,17 @@ const StatusInfo = ({ status }) => {
 	const [currentStatus, setCurrentStatus] = useState(status);
 	const handleChange = (e) => setCurrentStatus(e.target.value);
 	const { id } = useParams();
-	// const [changeStatusOrder] = useChangeStatusOrderMutation();
+	const [changeStatusOrder] = useChangeStatusOrderMutation();
 
 	const handleSaveClick = async () => {
-		// await changeStatusOrder({ id, data: { status: currentStatus } }).then(
-		// 	(res) => {
-		// 		console.log("Status Changed successfully", res);
-		// 	}
-		// );
+		await changeStatusOrder({ id, data: { status: currentStatus } }).then(
+			(res) => {
+				console.log("Status Changed successfully", res);
+			}
+		);
 	};
 	useEffect(() => {
-		if (status === "delivered" || status === "cancelled") {
+		if (status === "Delivered" || status === "Cancelled") {
 			setIsDisabled(true);
 		}
 	}, [status]);
@@ -204,10 +202,7 @@ const order = {
 
 function OrdersDetail() {
 	const { id } = useParams();
-	// const { data: order = [], isSuccess, isLoading } = useGetOrderQuery(id);
-
-	const isLoading = false;
-	const isSuccess = true;
+	const { data: order = [], isSuccess, isLoading } = useGetOrderQuery(id);
 
 	let content;
 	if (isLoading) {

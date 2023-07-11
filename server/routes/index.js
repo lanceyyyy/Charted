@@ -42,8 +42,11 @@ router.patch("/customer/:id/update", customer_services.update);
 router.delete("/customer/:id/delete", customer_services.delete);
 router.post("/customer/login", customer_services.login);
 
-router.get("/customer/:id/cart-items", cart_item_services.list_user);
-router.get("/customer/:id/orders", order_services.list_customer);
+router.get(
+	"/customer/:customer_id/cart-items",
+	cart_item_services.list_user
+);
+router.get("/customer/:customer_id/orders", order_services.list_customer);
 
 router.get("/customer/:id", customer_services.detail);
 router.get("/customers", customer_services.list);
