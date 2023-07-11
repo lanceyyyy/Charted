@@ -32,134 +32,135 @@ import ContactUs from "./routes/client/ContactUs";
 import Signup from "./routes/client/Signup";
 import Products from "./routes/client/Products";
 import Product from "./routes/client/Product";
+import Profile from "./routes/client/Profile";
 import CartItems from "./routes/client/CartItems";
 import OrderHistory from "./routes/client/OrderHistory";
 
 const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Root />,
-		children: [
-			{
-				errorElement: <Error />,
-				children: [
-					{
-						index: true,
-						element: <Home />,
-					},
-					{
-						path: "/contact",
-						element: <ContactUs />,
-					},
-					{
-						path: "/products",
-						element: <Products />,
-					},
-					{
-						path: "/products/:id",
-						element: <Product />,
-					},
-					{
-						path: "/customize",
-						element: <Customize />,
-					},
-					{
-						path: "/sign-up",
-						element: <Signup />,
-					},
-					{
-						path: "/login",
-						element: <Login />,
-					},
-					{
-						path: "/customers",
-						children: [
-							{
-								index: true,
-								element: <h1>Customer's Profile</h1>,
-							},
-							// /customers/cart-items
-							{
-								path: "cart-items",
-								element: <CartItems />,
-							},
-							{
-								path: "order-history",
-								element: <OrderHistory />,
-							},
-						],
-					},
-					{
-						path: "/admin",
-						children: [
-							{
-								index: true,
-								element: <Dashboard />,
-							},
-							{
-								path: "customers",
-								children: [
-									{
-										path: "list",
-										element: <CustomersList />,
-									},
-									{
-										path: ":id",
-										element: <CustomersDetail />,
-									},
-								],
-							},
+  {
+    path: "/",
+    element: <Root />,
+    children: [
+      {
+        errorElement: <Error />,
+        children: [
+          {
+            index: true,
+            element: <Home />,
+          },
+          {
+            path: "/contact",
+            element: <ContactUs />,
+          },
+          {
+            path: "/products",
+            element: <Products />,
+          },
+          {
+            path: "/products/:id",
+            element: <Product />,
+          },
+          {
+            path: "/customize",
+            element: <Customize />,
+          },
+          {
+            path: "/sign-up",
+            element: <Signup />,
+          },
+          {
+            path: "/login",
+            element: <Login />,
+          },
+          {
+            path: "/customers",
+            children: [
+              {
+                index: true,
+                element: <Profile />,
+              },
+              // /customers/cart-items
+              {
+                path: "cart-items",
+                element: <CartItems />,
+              },
+              {
+                path: "order-history",
+                element: <OrderHistory />,
+              },
+            ],
+          },
+          {
+            path: "/admin",
+            children: [
+              {
+                index: true,
+                element: <Dashboard />,
+              },
+              {
+                path: "customers",
+                children: [
+                  {
+                    path: "list",
+                    element: <CustomersList />,
+                  },
+                  {
+                    path: ":id",
+                    element: <CustomersDetail />,
+                  },
+                ],
+              },
 
-							{
-								path: "products",
-								children: [
-									{
-										path: "list",
-										element: <ProductsList />,
-									},
-									{
-										path: ":id",
-										element: <ProductsDetail />,
-									},
-									{
-										path: ":id/update",
-										element: <ProductUpdate />,
-									},
-									{
-										path: "create",
-										element: <ProductCreate />,
-									},
-								],
-							},
-							{
-								path: "orders",
-								children: [
-									{
-										index: true,
-										element: <OrdersList />,
-									},
-									{
-										path: ":id",
-										element: <OrdersDetail />,
-									},
-								],
-							},
-						],
-					},
-				],
-			},
-		],
-	},
+              {
+                path: "products",
+                children: [
+                  {
+                    path: "list",
+                    element: <ProductsList />,
+                  },
+                  {
+                    path: ":id",
+                    element: <ProductsDetail />,
+                  },
+                  {
+                    path: ":id/update",
+                    element: <ProductUpdate />,
+                  },
+                  {
+                    path: "create",
+                    element: <ProductCreate />,
+                  },
+                ],
+              },
+              {
+                path: "orders",
+                children: [
+                  {
+                    index: true,
+                    element: <OrdersList />,
+                  },
+                  {
+                    path: ":id",
+                    element: <OrdersDetail />,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<Provider store={store}>
-				<CssBaseline />
-				<SnackbarProvider />
-				<RouterProvider router={router} />
-			</Provider>
-		</ThemeProvider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <CssBaseline />
+        <SnackbarProvider />
+        <RouterProvider router={router} />
+      </Provider>
+    </ThemeProvider>
+  </React.StrictMode>
 );

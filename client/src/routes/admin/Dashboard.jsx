@@ -6,6 +6,11 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import FlareIcon from "@mui/icons-material/Flare";
 import AdminTitle from "../../components/AdminTitle";
 
+import { generateProductData } from "../../app/utils";
+import { useGetProductsQuery } from "../../app/services/product";
+import { useGetCustomersQuery } from "../../app/services/user";
+import { useGetOrdersQuery } from "../../app/services/order";
+
 const DataSummary = ({ title, num, Icon }) => {
   return (
     <Grid xs={12} md={6} lg={3}>
@@ -40,6 +45,9 @@ const DataSummary = ({ title, num, Icon }) => {
 };
 
 function Dashboard() {
+  const { data: products = [], isLoading, isSuccess } = useGetProductsQuery();
+  const { data: users = [], isLoadings, isSuccesss } = useGetCustomersQuery();
+  const { data: orders = [], Loadings, Successs } = useGetOrdersQuery();
   return (
     <Box
       sx={{
@@ -49,11 +57,15 @@ function Dashboard() {
       <AdminTitle title="Dashboard " />
       <Box>
         <Grid container spacing={3}>
-          <DataSummary title="Customers" num={3} Icon={GroupIcon} />
-          <DataSummary title="Total Products" num={3} Icon={FlareIcon} />
+          <DataSummary title="Customers" num={users.length} Icon={GroupIcon} />
+          <DataSummary
+            title="Total Products"
+            num={products.length}
+            Icon={FlareIcon}
+          />
           <DataSummary
             title="Pending Orders"
-            num={3}
+            num={orders.length}
             Icon={LocalShippingIcon}
           />
         </Grid>

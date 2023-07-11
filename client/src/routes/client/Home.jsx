@@ -8,6 +8,7 @@ import Box from "@mui/material/Box";
 import { Button, Typography } from "@mui/material";
 import ContactUs from "../client/ContactUs";
 import Login from "../client/Login";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -242,6 +243,8 @@ export default function Home() {
             Explore various available designs.
           </Typography>
           <Button
+            component={Link}
+            to="/products"
             sx={{
               fontSize: {
                 lg: "18px",
@@ -269,7 +272,17 @@ export default function Home() {
             },
           }}
         >
-          {/* <Carousel /> */}
+          <Box
+            sx={{
+              width: "100%",
+              marginTop: {
+                xs: "10px",
+                lg: 0,
+              },
+            }}
+            component="img"
+            src="/gallery-svg.svg"
+          ></Box>
         </Box>
       </Box>
       <Box
@@ -381,7 +394,7 @@ export default function Home() {
                 marginTop: "20px",
               }}
             >
-              CUSTOMIZE MY PAROL
+              COMING SOON!
             </Button>
           </Box>
         </Box>

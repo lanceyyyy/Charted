@@ -1,0 +1,19 @@
+{
+  "_id":{"$oid":"64adc627dfe6f434a46ae616"},
+  "username":"sample",
+  "first_name":"John",
+  "last_name":"Doe",
+  "barangay": "Kurilyo",
+  "municipality": "San Mateo",
+  "city": "Quiapo",
+  "postal_code": "1234",
+  "phone_number": "09384560155",
+  "email": "sample@gmail.com",
+  "password": "sample123",
+  "wishlist": Array,
+"createdAt":  "2023-07-08T14:23:26.301+00:00",
+"updatedAt": "2023-07-08T14:25:23.777+00:00",
+"__v": 0
+}
+
+{"_id":{"$oid":"64a9715ec5bf94ef6788c1a6"},"username":"sample","first_name":"sample first update","last_name":"sample last","barangay":"sample barangay","municipality":"sample municipality","city":"sample city","postal":"1243","phone_number":"093264656","email":"sample1@email.com","password":"1234","wishlist":[],"createdAt":{"$date":{"$numberLong":"1688826206301"}},"updatedAt":{"$date":{"$numberLong":"1688826323777"}},"__v":{"$numberInt":"0"}}
