@@ -78,9 +78,15 @@ export default function Login() {
                 >
                   Login
                 </Button>
-                <Typography textAlign="right" color="primary.red">
-                  Sign Up
-                </Typography>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "end",
+                  }}
+                >
+                  <Button>Sign-up</Button>
+                </Box>
               </Box>
             </Paper>
           </Grid>
