@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { api_base_url } from "../utils";
 
 export const api = createApi({
 	reducerPath: "api",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "http://localhost:4000",
+		baseUrl: api_base_url,
 	}),
-	tagTypes: ["Product", "User", "Cart Item", "Checkout", "Wishlist"],
+	tagTypes: ["Customer", "Product", "Cart Item", "Order", "Wishlist"],
 
 	endpoints: () => ({}),
 });
