@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider } from "@emotion/react";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { SnackbarProvider } from "notistack";
 
 import "./styles.css";
 
@@ -30,127 +31,127 @@ import Customize from "./routes/client/Customize";
 import ContactUs from "./routes/client/ContactUs";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        errorElement: <Error />,
-        children: [
-          {
-            index: true,
-            element: <Home />,
-          },
-          {
-            path: "/contact",
-            element: <ContactUs />,
-          },
+	{
+		path: "/",
+		element: <Root />,
+		children: [
+			{
+				errorElement: <Error />,
+				children: [
+					{
+						index: true,
+						element: <Home />,
+					},
+					{
+						path: "/contact",
+						element: <ContactUs />,
+					},
 
-          {
-            path: "/products",
-            element: <h1>Products List</h1>,
-          },
-          {
-            path: "/products/:id",
-            element: <h1>Products showcase</h1>,
-          },
-          {
-            path: "/customize",
-            element: <Customize />,
-          },
-          {
-            path: "/sign-up",
-            element: <h1>Products showcase</h1>,
-          },
-          {
-            path: "/login",
-            element: <Login />,
-          },
-          {
-            path: "/customers",
-            children: [
-              {
-                index: true,
-                element: <h1>Customer's Profile</h1>,
-              },
-              // /customers/cart-items
-              {
-                path: "cart-items",
-                element: <h1>Customer's Cart Items</h1>,
-              },
-            ],
-          },
-          {
-            path: "/admin",
-            children: [
-              {
-                index: true,
-                element: <Dashboard />,
-              },
-              {
-                path: "customers",
-                children: [
-                  {
-                    path: "list",
-                    element: <h1>Customer List</h1>,
-                  },
-                  {
-                    path: ":id",
-                    element: <h1>Customer Detail</h1>,
-                  },
-                ],
-              },
+					{
+						path: "/products",
+						element: <h1>Products List</h1>,
+					},
+					{
+						path: "/products/:id",
+						element: <h1>Products showcase</h1>,
+					},
+					{
+						path: "/customize",
+						element: <Customize />,
+					},
+					{
+						path: "/sign-up",
+						element: <h1>Products showcase</h1>,
+					},
+					{
+						path: "/login",
+						element: <Login />,
+					},
+					{
+						path: "/customers",
+						children: [
+							{
+								index: true,
+								element: <h1>Customer's Profile</h1>,
+							},
+							// /customers/cart-items
+							{
+								path: "cart-items",
+								element: <h1>Customer's Cart Items</h1>,
+							},
+						],
+					},
+					{
+						path: "/admin",
+						children: [
+							{
+								index: true,
+								element: <Dashboard />,
+							},
+							{
+								path: "customers",
+								children: [
+									{
+										path: "list",
+										element: <CustomersList />,
+									},
+									{
+										path: ":id",
+										element: <CustomersDetail />,
+									},
+								],
+							},
 
-              {
-                path: "products",
-                children: [
-                  {
-                    path: "list",
-                    element: <h1>Products List</h1>,
-                  },
-                  {
-                    path: ":id",
-                    element: <h1>Product Detail</h1>,
-                  },
-                  {
-                    path: ":id/update",
-                    element: <h1>Product Update</h1>,
-                  },
-                  {
-                    path: "create",
-                    element: <h1>Product Create</h1>,
-                  },
-                ],
-              },
-              {
-                path: "orders",
-                children: [
-                  {
-                    index: true,
-                    element: <h1>Orders List</h1>,
-                  },
-                  {
-                    path: ":id",
-                    element: <h1>Order</h1>,
-                  },
-                ],
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
+							{
+								path: "products",
+								children: [
+									{
+										path: "list",
+										element: <ProductsList />,
+									},
+									{
+										path: ":id",
+										element: <ProductsDetail />,
+									},
+									{
+										path: ":id/update",
+										element: <ProductUpdate />,
+									},
+									{
+										path: "create",
+										element: <ProductCreate />,
+									},
+								],
+							},
+							{
+								path: "orders",
+								children: [
+									{
+										index: true,
+										element: <OrdersList />,
+									},
+									{
+										path: ":id",
+										element: <OrdersDetail />,
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		],
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <CssBaseline />
-        {/* <App /> */}
-        <RouterProvider router={router} />
-      </Provider>
-    </ThemeProvider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<ThemeProvider theme={theme}>
+			<Provider store={store}>
+				<CssBaseline />
+				<SnackbarProvider />
+				<RouterProvider router={router} />
+			</Provider>
+		</ThemeProvider>
+	</React.StrictMode>
 );
