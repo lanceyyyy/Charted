@@ -60,25 +60,22 @@ exports.status_change = (req, res, next) => {
   )
     .populate("order_items")
     .then((result) => {
+      console.log(req.body);
       if (req.body.status === "Delivered") {
         // update the stocks and num_sold of the product
-        result.order_items
-          .filter((item) => item.type === "fixed")
-          .forEach((item) => {
-            Product.findByIdAndUpdate(
-              item.product,
-              {
-                $inc: {
-                  stocks: -item.quantity,
-                },
+        result.order_items.forEach((item) => {
+          Product.findByIdAndUpdate(
+            item.product,
+            {
+              $inc: {
+                stocks: -item.quantity,
               },
-              { new: true }
-            ).then((result) =>
-              console.log(
-                `Product ${result.name} stock and num_sold updated`
-              )
-            );
-          });
+            },
+            { new: true }
+          ).then((result) =>
+            console.log(`Product ${result.name} stock and num_sold updated`)
+          );
+        });
       }
       res.json(result);
     })

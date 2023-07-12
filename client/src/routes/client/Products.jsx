@@ -12,18 +12,27 @@ import { PHPPrice, api_base_url } from "../../app/utils";
 import { Link } from "react-router-dom";
 import { useGetProductsQuery } from "../../app/services/product";
 
-const CardProduct = ({ name, price, id, image_url }) => {
+const CardProduct = ({ name, price, id, image_url, description }) => {
   return (
     <Grid xs={12} sm={6} md={3}>
       <Box>
         <Card
           elevation={3}
           sx={{
-            width: { xs: 300, sm: 250, md: 225 },
+            width: { xs: 300, sm: 250, md: 275 },
             m: { xs: "auto", md: 0 },
           }}
         >
-          <CardActionArea LinkComponent={Link} to={`/products/${id}`}>
+          <CardActionArea
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              padding: 3,
+            }}
+            LinkComponent={Link}
+            to={`/products/${id}`}
+          >
             <CardMedia
               image={`${api_base_url}${image_url}`}
               sx={{
@@ -32,9 +41,12 @@ const CardProduct = ({ name, price, id, image_url }) => {
                 backgroundColor: "primary.main",
               }}
             />
-            <CardContent sx={{ p: 1 }}>
-              <Typography fontWeight="bold">{name}</Typography>
-              <Typography fontWeight="caption">
+            <CardContent sx={{ p: 3 }}>
+              <Typography variant="h6" fontWeight="bold">
+                {name}
+              </Typography>
+              <Typography>{description}</Typography>
+              <Typography fontWeight="caption" color="primary.red">
                 {PHPPrice.format(price)}
               </Typography>
             </CardContent>
@@ -69,9 +81,11 @@ function Products() {
         </Typography>
 
         <Grid container spacing={3}>
-          {products.map((item) => (
-            <CardProduct key={item.id} {...item} />
-          ))}
+          {products
+            .filter((item) => item.availability === true && item.stocks > 1)
+            .map((item) => (
+              <CardProduct key={item.id} {...item} />
+            ))}
         </Grid>
       </Container>
     </Box>
