@@ -30,6 +30,7 @@ const upload_product = multer({
 });
 
 // Admin Routes
+router.post("/admin/login", admin_services.login);
 router.post("/admin/sign-up", admin_services.signup);
 router.patch("/admin/:id/update", admin_services.update);
 router.delete("/admin/:id/delete", admin_services.delete);
