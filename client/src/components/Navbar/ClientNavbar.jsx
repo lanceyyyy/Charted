@@ -13,6 +13,7 @@ import {
   MenuItem,
   Stack,
   Toolbar,
+  Typography,
 } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,6 +22,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useSelector } from "react-redux";
 import { userSelector } from "../../app/features/userSlice";
 import { useGetCartByUserQuery } from "../../app/services/cart-items";
+import { useGetCustomerQuery } from "../../app/services/user";
 
 const MenuSelect = () => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -132,97 +134,143 @@ const ProfileMenuSelect = () => {
 
   const refresh = () => window.location.reload(true);
 
+  const user = useSelector(userSelector);
+  const {
+    data: customer = {},
+    isLoading,
+    isSuccess,
+  } = useGetCustomerQuery(user.id);
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <IconButton
-        onClick={handleClick}
+    <Box
+      sx={{
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: {
+          xs: "column",
+          lg: "row",
+        },
+        alignItems: "center",
+      }}
+    >
+      <Box
         sx={{
-          color: "primary.red",
-        }}
-        size="large"
-      >
-        <AccountCircleOutlinedIcon
-          sx={{
-            fontSize: { xs: 28, md: 35 },
-          }}
-        />
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        sx={{
-          "& .MuiList-padding": {
-            padding: 0,
+          display: {
+            xs: "none",
+            lg: "block",
           },
         }}
       >
-        <Box
-          component={Link}
-          to="/customers"
-          sx={{ textDecoration: "none", color: "inherit" }}
+        <Typography
+          sx={{
+            color: "primary.red",
+
+            fontSize: {
+              xs: "13px",
+              md: "18px",
+            },
+            textAlign: "center",
+          }}
         >
-          <MenuItem
-            onClick={handleClose}
-            sx={{
-              backgroundColor: "primary.red",
-              color: "primary.text",
-              fontSize: {
-                xs: "13px",
-                md: "18px",
-              },
-              "&:hover": {
-                color: "primary.red",
-              },
-            }}
-          >
-            Profile
-          </MenuItem>
-        </Box>
-        <Box
-          component={Link}
-          to="/customers/order-history"
-          sx={{ textDecoration: "none", color: "inherit" }}
+          Hello, {user.first_name}
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+        }}
+      >
+        <IconButton
+          onClick={handleClick}
+          sx={{
+            color: "primary.red",
+          }}
+          size="large"
         >
-          <MenuItem
-            onClick={handleClose}
+          <AccountCircleOutlinedIcon
             sx={{
-              backgroundColor: "primary.red",
-              color: "primary.text",
-              fontSize: {
-                xs: "13px",
-                md: "18px",
-              },
-              "&:hover": {
-                color: "primary.red",
-              },
+              fontSize: { xs: 28, md: 35 },
             }}
+          />
+        </IconButton>
+        <Menu
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          sx={{
+            "& .MuiList-padding": {
+              padding: 0,
+            },
+          }}
+        >
+          <Box
+            component={Link}
+            to="/customers"
+            sx={{ textDecoration: "none", color: "inherit" }}
           >
-            Order History
-          </MenuItem>
-        </Box>
-        <Divider />
-        <Box sx={{ textDecoration: "none", color: "inherit" }}>
-          <MenuItem
-            /* component={Link}
+            <MenuItem
+              onClick={handleClose}
+              sx={{
+                backgroundColor: "primary.red",
+                color: "primary.text",
+                fontSize: {
+                  xs: "13px",
+                  md: "18px",
+                },
+                "&:hover": {
+                  color: "primary.red",
+                },
+              }}
+            >
+              Profile
+            </MenuItem>
+          </Box>
+          <Box
+            component={Link}
+            to="/customers/order-history"
+            sx={{ textDecoration: "none", color: "inherit" }}
+          >
+            <MenuItem
+              onClick={handleClose}
+              sx={{
+                backgroundColor: "primary.red",
+                color: "primary.text",
+                fontSize: {
+                  xs: "13px",
+                  md: "18px",
+                },
+                "&:hover": {
+                  color: "primary.red",
+                },
+              }}
+            >
+              Order History
+            </MenuItem>
+          </Box>
+          <Divider />
+          <Box sx={{ textDecoration: "none", color: "inherit" }}>
+            <MenuItem
+              /* component={Link}
             to="/" */
-            onClick={refresh}
-            sx={{
-              backgroundColor: "primary.red",
-              color: "primary.text",
-              fontSize: {
-                xs: "13px",
-                md: "18px",
-              },
-              "&:hover": {
-                color: "primary.red",
-              },
-            }}
-          >
-            Logout
-          </MenuItem>
-        </Box>
-      </Menu>
+              onClick={refresh}
+              sx={{
+                backgroundColor: "primary.red",
+                color: "primary.text",
+                fontSize: {
+                  xs: "13px",
+                  md: "18px",
+                },
+                "&:hover": {
+                  color: "primary.red",
+                },
+              }}
+            >
+              Logout
+            </MenuItem>
+          </Box>
+        </Menu>
+      </Box>
     </Box>
   );
 };

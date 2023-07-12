@@ -1,14 +1,23 @@
 import {
+  Avatar,
   Box,
+  Button,
   Chip,
-  CircularProgress,
   Divider,
-  Grid,
   Paper,
+  TextField,
   Typography,
 } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
+import { Link, useParams } from "react-router-dom";
+
 import { useGetCustomerQuery } from "../../app/services/user";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { userSelector } from "../../app/features/userSlice";
+// import { api_base_url } from "../../../app/base_url";
 
 const Title = ({ title }) => (
   <Box>
@@ -20,7 +29,6 @@ const Title = ({ title }) => (
     <Divider />
   </Box>
 );
-
 const Info = ({ title, value }) => (
   <Box>
     <Box m={1}>
@@ -33,9 +41,13 @@ const Info = ({ title, value }) => (
   </Box>
 );
 
-export default function Profile() {
-  const { id } = useParams();
-  const { data: customer = {}, isLoading, isSuccess } = useGetCustomerQuery(id);
+function CustomersDetail() {
+  const user = useSelector(userSelector);
+  const {
+    data: customer = {},
+    isLoading,
+    isSuccess,
+  } = useGetCustomerQuery(user.id);
   let content;
   if (isLoading) {
     content = (
@@ -52,62 +64,158 @@ export default function Profile() {
     );
   } else if (isSuccess) {
     content = (
-      <Box>
-        <Typography variant="h4">Customer Detail</Typography>
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="flex-end"
+      <Box
+        sx={{
+          backgroundImage: `url(/backgroundhome1.svg)`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "100vh",
+          display: "flex",
+
+          alignItems: "center",
+          flexDirection: "column",
+          paddingY: "30px",
+        }}
+      >
+        {/*  <Button
+          alignSelf="end"
+          variant="outlined"
+          color="secondary"
+          LinkComponent={Link}
+          to={`/admin/products/${user.id}/update`}
         >
-          <Box>
-            <Typography variant="overline">User ID: </Typography>
-            <Chip label={id} size="small" />
+          <BorderColorOutlinedIcon sx={{ mr: 1, fontSize: 16 }} />
+          Edit
+        </Button> */}
+        <Typography pb="10px" variant="h3" color="primary.text">
+          Welcome {user.first_name}!
+        </Typography>
+        <Box
+          sx={{
+            width: "60%",
+            backgroundColor: "#fff",
+            display: "flex",
+            flexDirection: "column",
+            padding: 5,
+          }}
+        >
+          <Box
+            sx={{
+              marginTop: "20px",
+            }}
+          >
+            <Typography variant="h6" textAlign="left" color="primary.red">
+              Basic Information
+            </Typography>
+            <Divider />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginLeft: "10px",
+              }}
+              label="Username"
+              value={user.username}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginLeft: "10px",
+              }}
+              label="First Name"
+              value={user.first_name}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginLeft: "10px",
+              }}
+              label="Last Name"
+              value={user.last_name}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginLeft: "10px",
+              }}
+              label="Phone Number"
+              value={user.phone_number}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginLeft: "10px",
+              }}
+              label="E-mail"
+              value={user.email}
+            />
+          </Box>
+          <Box
+            sx={{
+              marginTop: "20px",
+            }}
+          >
+            <Typography variant="h6" textAlign="left" color="primary.red">
+              Address
+            </Typography>
+            <Divider />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginRight: "10px",
+              }}
+              label="Barangay"
+              value={user.barangay}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginRight: "10px",
+              }}
+              label="Municipality"
+              value={user.municipality}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginRight: "10px",
+              }}
+              label="City"
+              value={user.city}
+            />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginRight: "10px",
+              }}
+              label="Postal Code"
+              value={user.postal_code}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              marginTop: "20px",
+            }}
+          >
+            <Typography variant="h6" textAlign="left" color="primary.red">
+              Password
+            </Typography>
+            <Divider />
+            <TextField
+              sx={{
+                marginTop: "10px",
+                marginRight: "10px",
+              }}
+              label="Password"
+              value={user.password}
+            />
           </Box>
         </Box>
-        <Grid container spacing={3} sx={{ mt: 3 }}>
-          <Grid xs={12} md={6}>
-            <Paper elevation={3}>
-              <Title title="Account" />
-              <Info title="Email" value={customer.email} />
-              <Info title="First Name" value={customer.first_name} />
-              <Info title="Last Name" value={customer.last_name} />
-            </Paper>
-          </Grid>
-
-          <Grid xs={12} md={6}>
-            <Paper elevation={3}>
-              <Title title="Address" />
-              <Info title="Barangay" value={customer.barangay} />
-              <Info title="Municipality" value={customer.municipality} />
-              <Info title="City" value={customer.city} />
-              <Info title="Postal" value={customer.postal} />
-            </Paper>
-          </Grid>
-        </Grid>
       </Box>
     );
   }
-  return (
-    <Box
-      sx={{
-        backgroundImage: `url(/backgroundhome1.svg)`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-      }}
-    >
-      <Box
-        sx={{
-          textAlign: "center",
-          padding: "15px",
-        }}
-      >
-        <Typography color="primary.text" variant="h4">
-          Welcome to CharTed Parol
-        </Typography>
-      </Box>
-      {content}
-    </Box>
-  );
+  return <Box>{content}</Box>;
 }
+
+export default CustomersDetail;
