@@ -131,6 +131,16 @@ export default function Login() {
                     Sign-up
                   </Button>
                 </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "end",
+                  }}
+                >
+                  <Button LinkComponent={Link} to="/login-special">
+                    login as admin
+                  </Button>
+                </Box>
               </Box>
             </Paper>
           </Grid>

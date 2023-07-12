@@ -26,15 +26,29 @@ export default function Login() {
       password: "",
     },
   });
+  const admin_username = "superadmin";
+  const password = "admin123";
 
-  const onSubmit = async () => await loginCustomer(formik.values);
-
+  const onSubmit = async () => {
+    if (
+      formik.values.username === admin_username &&
+      formik.values.password === password
+    ) {
+      navigate("/admin");
+      enqueueSnackbar("Login Successfully", { variant: "success" });
+    } else {
+      enqueueSnackbar("Wrong input email or password", {
+        variant: "warning",
+        preventDuplicate: true,
+      });
+    }
+  };
   useEffect(() => {
     if (data) {
       if (data.id) {
         dispatch(setUser(data));
         enqueueSnackbar("Login Successfully", { variant: "success" });
-        navigate("/");
+        navigate("/admin");
       } else {
         enqueueSnackbar("Wrong input email or password", {
           variant: "warning",
@@ -84,7 +98,7 @@ export default function Login() {
               }}
             >
               <Typography variant="h5" textAlign="center">
-                Login to CharTed Parol
+                CharTed Parol Admin Account
               </Typography>
               <Divider />
               <Box sx={{ px: 2, pt: 2 }}>

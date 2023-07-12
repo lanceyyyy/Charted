@@ -46,8 +46,7 @@ export default function Signup() {
       new_customer.append("phone_number", formik.values.phone_number);
       new_customer.append("email", formik.values.email);
       new_customer.append("password", formik.values.password);
-
-      await signUpCustomer(new_customer)
+      await signUpCustomer(formik.values)
         .unwrap()
         .then((res) => {
           console.log("Create Customer Successfully", res);
