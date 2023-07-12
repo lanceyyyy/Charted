@@ -24,6 +24,7 @@ import {
 import { PHPPrice, api_base_url } from "../../app/utils";
 import { userSelector } from "../../app/features/userSlice";
 import { useCreateOrderMutation } from "../../app/services/order";
+import { useUpdateProductMutation } from "../../app/services/product";
 
 const CartItem = ({ i, id, product, quantity }) => {
   const [updateCart] = useUpdateCartMutation();
@@ -55,6 +56,9 @@ const CartItem = ({ i, id, product, quantity }) => {
         flexDirection: { xs: "column", md: "row" },
         justifyContent: { md: "space-between" },
         alignItems: { xs: "center" },
+        border: "3px dashed red",
+        padding: 3,
+        borderRadius: "10px",
       }}
     >
       <Box sx={{ display: "flex" }}>
@@ -167,7 +171,7 @@ function CartItems() {
 
   return (
     <Box
-      pt={10}
+      py={10}
       sx={{
         backgroundImage: `url(/customize-bg.svg)`,
         backgroundRepeat: "no-repeat",
@@ -175,18 +179,24 @@ function CartItems() {
         minHeight: "90vh",
       }}
     >
-      <Typography color="primary.text" variant="h3" textAlign="center" mb={3}>
-        Shopping Cart
-      </Typography>
-      <Container>
-        <Stack spacing={2} color="primary.text">
+      <Container
+        sx={{
+          backgroundColor: "#fff",
+          padding: 5,
+          borderRadius: "20px",
+        }}
+      >
+        <Typography color="primary.red" variant="h3" textAlign="center" mb={3}>
+          Shopping Cart
+        </Typography>
+        <Stack spacing={3} color="#000">
           {cart_items.map((cart, i) => (
             <CartItem key={cart.id} i={i + 1} {...cart} />
           ))}
         </Stack>
         <Box mt={3}>
           <Typography
-            color="primary.text"
+            color="primary.red"
             variant="h4"
             textAlign="center"
             fontWeight="bold"
@@ -196,14 +206,14 @@ function CartItems() {
           <Stack alignItems="center">
             <Stack direction="row" alignItems="center" spacing={1.2}>
               <Typography
-                color="primary.text"
+                color="primary.red"
                 variant="h5"
                 textAlign="right"
                 width={160}
               >
                 Total Price:
               </Typography>
-              <Typography color="primary.text" width={140} fontSize={23}>
+              <Typography color="#000" width={140} fontSize={23}>
                 {PHPPrice.format(
                   cart_items.reduce(
                     (total, item) => total + item.product.price * item.quantity,
@@ -214,14 +224,14 @@ function CartItems() {
             </Stack>
             <Stack direction="row" alignItems="center" spacing={1.2}>
               <Typography
-                color="primary.text"
+                color="primary.red"
                 variant="h6"
                 textAlign="right"
                 width={160}
               >
                 Total Quantity:
               </Typography>
-              <Typography color="primary.text" width={140} fontSize={23}>
+              <Typography color="#000" width={140} fontSize={23}>
                 {cart_items.reduce((total, item) => total + item.quantity, 0)}{" "}
                 items
               </Typography>
